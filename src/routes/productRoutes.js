@@ -1,26 +1,9 @@
 import express from "express";
-import productController from "../controller/productController.js";
-
-const { 
-  createProduct, 
-  getProducts, 
-  getAllProducts,
-  getProduct, 
-  updateProduct, 
-  deleteProduct,
-  getProductsNeedingReorder,
-  updateStock 
-} = productController;
+import { searchProducts } from "../controller/productController.js";
 
 const router = express.Router();
 
-router.post("/", createProduct);
-router.get("/", getProducts);
-router.get("/all", getAllProducts);
-router.get("/reorder", getProductsNeedingReorder);
-router.get("/:id", getProduct);
-router.put("/:id", updateProduct);
-router.put("/:id/stock", updateStock);
-router.delete("/:id", deleteProduct);
+router.get("/search", searchProducts);
+router.get("/filter", searchProducts); // reuse same logic
 
-export default router; 
+export default router;
